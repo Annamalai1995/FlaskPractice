@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app=Flask(__name__)
 
@@ -17,6 +17,14 @@ def dataPass(data):
 @app.route("/number/<int:data>")
 def dataNumPass(data):
     return "<h2>"+str(data*data)+"</h2>"
+
+@app.route("/page")
+def pagesOne():
+    return render_template("hai.html")
+
+@app.route("/numpage/<int:data>")
+def dataPagePass(data):
+    return render_template("receive.html",myData=(data*data))
 
 if __name__ == "__main__":
     app.run(debug=True,port=5000)
